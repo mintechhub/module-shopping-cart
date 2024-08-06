@@ -1,0 +1,107 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ *   Copyright (c) 2024 MinTechHub <saif.ali@mintechhub.com> - MinTechHub
+ *   All rights reserved
+ *
+ *   This product includes proprietary software developed at MinTechHub
+ *   For more information see https://www.mintechhub.com/
+ *
+ *   To obtain a valid license for using this software please contact us at saif.ali@mintechhub.com
+ */
+
+/**
+ * @copyright  2024 MinTechHub <saif.ali@mintechhub.com> - MinTechHub
+ * @link       https://www.mintechhub.com/
+ * @author     Saif Ali <saif.ali@mintechhub.com>
+ */
+?>
+<?php
+/** @var MinTechHub\ShoppingCart\Block\Adminhtml\Carts\View\Form $this*/
+/** @var  \Magento\Quote\Api\Data\CartInterface $quoteObject */
+$quote = $block->getQuoteDetails();
+/**
+ * @var \Magento\Quote\Model\Quote $quote;
+ */
+
+/**
+ * @var \Magento\Quote\Model\Quote\Item $item;
+ */
+$quote       = $block->getQuoteDetails();
+$items       = $quote->getItemsCollection();
+$customerUrl = $block->getCustomerUrl($quote);
+?>
+<div class="admin__page-section-title">
+    <span class="title">Cart Details</span>
+</div>
+<div class="admin__page-section-content">
+<table class="admin__table-secondary">
+    <tbody>
+    <tr>
+        <th><?= $escaper->escapeHtml(__("ID"));?></th>
+        <td><?= $escaper->escapeHtml($quote->getID()); ?></td>
+    </tr>
+    <tr>
+        <th><?= $escaper->escapeHtml(__("Customer Name"));?></th>
+        <td>
+            <a href="<?= $escaper->escapeHtml($customerUrl) ?>" target="_blank">
+                <span>
+                    <?= $escaper->escapeHtml($quote->getCustomerFirstname() . " " .$quote->getCustomerLastname()); ?>
+                </span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <th><?= $escaper->escapeHtml(__("Email"));?></th>
+        <td><a href="mailto:<?= $escaper->escapeHtml($quote->getCustomerEmail())?>">
+            <?= $escaper->escapeHtml($quote->getCustomerEmail())?>
+        </a></td>
+    </tr>
+    <tr>
+        <th><?= $escaper->escapeHtml(__("Created"));?></th>
+        <td><?= $escaper->escapeHtml($quote->getCreatedAt()); ?></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="admin__page-section-title">
+    <span class="title"><?= $escaper->escapeHtml(__("Cart Details"));?></span>
+</div>
+<div class="admin__page-section-content">
+    <table class="admin__table-secondary">
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>SKU</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Row Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $i = 1;?>
+        <?php foreach ($items as $item): ?>
+            <?php  $product_url = $block->getProductUrl($item); ?>
+        <tr>
+            <td><?= $escaper->escapeHtml($i); ?></td>
+            <td><?= $escaper->escapeHtml($item->getSku()); ?></td>
+            <td><a href="<?= $escaper->escapeHtml($block->getProductUrl($item)) ?>" target="_blank">
+                <?= $escaper->escapeHtml($item->getName()); ?>
+            </a></td>
+            <td><?= $escaper->escapeHtml($item->getQty()); ?></td>
+            <td><?= $escaper->escapeHtml($block->formatAmount($item->getPrice())); ?></td>
+            <td><?= $escaper->escapeHtml($block->formatAmount($item->getRowTotal())); ?></td>
+        </tr>
+            <?php $i ++; ?>
+        <?php endforeach; ?>
+        <tr>
+            <td colspan="4"></td>
+            <td><b>Sub Total</b></td>
+            <td><?= $escaper->escapeHtml($block->formatAmount($quote->getBaseSubtotal())); ?></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

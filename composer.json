@@ -1,0 +1,24 @@
+{
+    "name": "mintechhub/module-shopping-cart",
+    "license": "MIT",
+    "type": "magento2-module",
+    "description": "This is a magento2 extension to manage Shopping Cart from the admin. An admin user can log into magento admin to see shopping cart details. Each Cart will be displayed and can be searched by user or date range or amount.",
+    "version" : "1.0.0",
+    "require": {},
+    "homepage": "https://mintechhub.com",
+    "authors":[
+        {
+            "email": "saif.ali@mintechhub.com",
+            "name": "mintechhub.com",
+            "homepage": "https://mintechhub.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MinTechHub\\ShoppingCart\\": ""
+        }
+    }
+}

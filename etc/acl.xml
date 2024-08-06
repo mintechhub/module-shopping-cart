@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ *   Copyright (c) 2024 MinTechHub <saif.ali@mintechhub.com> - MinTechHub
+ *   All rights reserved
+ *
+ *   This product includes proprietary software developed at MinTechHub
+ *   For more information see https://www.mintechhub.com/
+ *
+ *   To obtain a valid license for using this software please contact us at saif.ali@mintechhub.com
+ */
+
+/**
+ * @copyright  2024 MinTechHub <saif.ali@mintechhub.com> - MinTechHub
+ * @link       https://www.mintechhub.com/
+ * @author     Saif Ali <saif.ali@mintechhub.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="MinTechHub_ShoppingCart::cart" title="MinTechHub Shopping Cart" sortOrder="70">
+                    <resource id="MinTechHub_ShoppingCart::cart_grid" title="View Cart List" sortOrder="10"/>
+                    <resource id="MinTechHub_ShoppingCart::cart_details" title="View Cart Details" sortOrder="10"/>
+                    <resource id="MinTechHub_ShoppingCart::cart_edit" title="Edit Cart" sortOrder="10"/>
+                    <resource id="MinTechHub_ShoppingCart::cart_convert" title="Convert To Order" sortOrder="10"/>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MinTechHub_ShoppingCart::settings" title="MinTechHub Shopping Cart" sortOrder="1000"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
